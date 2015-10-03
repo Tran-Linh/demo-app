@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<%if !@user.microposts.empty?%>
+  <table>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Content</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%count=1%>
+      <% @user.microposts.each do |micro| %>
+        <tr>
+          <td><%= count %></td>
+          <td style="text-align: left;"><%= micro.content %></td>
+          <td><%=link_to 'View',micro%></td>
+          <%count=count+1%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%else%>
+  <p>No microposts.</p>
+<%end%>
+<%= link_to 'Edit', edit_user_path(@user) %> 
+<%= link_to 'Back', users_path %>
